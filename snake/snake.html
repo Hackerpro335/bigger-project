@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,25 +8,127 @@
     margin: 0;
   }
 
-  body {
-    background: black;
+  *{
+    box-sizing: border-box;
+}
+html, body{
+    margin: 0;
+    padding: 0; 
+    width: 100%;
+    height: 100%;
+}
+body{
+    background: white;
+}
+main{
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header{
+    width: 100%;
+    display: flex;
+    background: lightskyblue;
+    position: fixed;
+    justify-content: space-between;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 0px 0px 15px 15px;
+}
+a{
+    margin: 0px 0px 0px 15px;
+}
+a, img{
+    height: 50px;
+}
+main{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    height: 100%;
+}
+.icon-menu {
+    margin: 15px;
+    --gap: 5px;
+    --height-bar: 2.5px;
+    --pos-y-bar-one: 0;
+    --pos-y-bar-three: 0;
+    --scale-bar: 1;
+    --rotate-bar-one: 0;
+    --rotate-bar-three: 0;
+    width: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .bar {
+    position: relative;
+    height: var(--height-bar);
+    width: 100%;
+    border-radius: .5rem;
+    background-color: black;
+  }
+  
+  .bar--1 {
+    top: var(--pos-y-bar-one);
+    transform: rotate(var(--rotate-bar-one));
+    transition: top 200ms 100ms, transform 100ms;
+  }
+  
+  .bar--2 {
+    transform: scaleX(var(--scale-bar));
+    transition: transform 150ms 100ms;
+  }
+  
+  .bar--3 {
+    bottom: var(--pos-y-bar-three);
+    transform: rotate(var(--rotate-bar-three));
+    transition: bottom 200ms 100ms, transform 100ms;
+  }
+  
+  .check-icon:checked + .icon-menu > .bar--1 {
+    transition: top 200ms, transform 200ms 100ms;
+  }
+  
+  .check-icon:checked + .icon-menu > .bar--3 {
+    transition: bottom 200ms, transform 200ms 100ms;
+  }
+  
+  .check-icon:checked + .icon-menu {
+    --pos-y-bar-one: calc(var(--gap) + var(--height-bar));
+    --pos-y-bar-three: calc(var(--gap) + var(--height-bar));
+    --scale-bar: 0;
+    --rotate-bar-one: 45deg;
+    --rotate-bar-three: -45deg;
   }
   .zag{
-      color: red;
+      color: rgb(0, 0, 0);
       font-size: xx-large;
   }
   canvas {
-    border: 1px solid white;
+    border: 1px solid black;
   }
   </style>
 </head>
 <body>
-    <h2 class="zag">Use arrows to move.</h2>
-<canvas width="400" height="400" id="game"></canvas>
+  <header>
+    <a href="file:///D:/yurevich_tsikhan/project/index.html" class="logo"><img src="img/image_processing20210616-28548-1n41g18.png" alt=""></a>
+    <input hidden="" class="check-icon" id="check-icon" name="check-icon" type="checkbox">
+        <label class="icon-menu" for="check-icon">
+            <div class="bar bar--1"></div>
+            <div class="bar bar--2"></div>
+            <div class="bar bar--3"></div>
+        </label>
+</header>
+<main>
+  <h2 class="zag">Жми на стрелочки для движения.</h2>
+  <canvas width="400" height="400" id="game"></canvas>
+</main>
 <script>
 var canvas = document.getElementById('game');
 var context = canvas.getContext('2d');
