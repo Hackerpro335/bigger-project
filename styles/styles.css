@@ -47,12 +47,6 @@ a{
 a, img{
     height: 50px;
 }
-main{
-    display: flex;
-    justify-content: center;
-    height: 100%;
-    
-}
 .icon-menu {
     margin: 15px;
     --gap: 5px;
@@ -110,74 +104,108 @@ main{
     --rotate-bar-one: 45deg;
     --rotate-bar-three: -45deg;
   }
+
   .card {
-    width: 190px;
-    height: 254px;
-    border-radius: 20px;
-    background: lightgray;
-    position: relative;
-    padding: 1.8rem;
-    border: 2px solid #c3c6ce;
-    -webkit-transition: 0.5s ease-out;
-    transition: 0.5s ease-out;
-    overflow: visible;
-    margin-left: 25px;
+    width: 200px;
+    height: 250px;
+    background: #262626;
+    margin: 0px 85px 0px 85px;
+    padding: 15px;
   }
   
-  .card-details {
-    color: rgb(189, 0, 0);
-    height: 100%;
-    gap: .5em;
-    display: grid;
-    place-content: center;
-    font-family: 'Courier New', Courier, monospace;
-  }
-  
-  .card-button {
-    text-decoration: none;
-    text-align: center;
-    -webkit-transform: translate(-50%, 125%);
-    -ms-transform: translate(-50%, 125%);
-    transform: translate(-50%, 125%);
-    width: 70%;
-    border-radius: 1rem;
-    border: none;
-    background-color: rgb(189, 0, 0);
-    color: #fff;
-    font-size: 1rem;
-    padding: .5rem 1rem;
+  .GameIcon {
+    transform: translate(-80px,-50px);
     position: absolute;
-    left: 41%;
-    bottom: 0;
-    opacity: 0;
-    -webkit-transition: 0.3s ease-out;
-    transition: 0.3s ease-out;
-    cursor: pointer;
-    font-family: 'Courier New', Courier, monospace;
+    width: 150px;
+    height: 170px;
+    transition: 0.3s;
   }
   
-  .text-body {
-    color: rgb(134, 134, 134);
+  .GameImg {
+    width: 100%;
+    height: 100%;
   }
   
-  /*Text*/
-  .text-title {
-    font-size: 1.5em;
+  .Gfooter {
+    width: 100%;
+    height: 0%;
+    background-color: #262626;
+    border-radius: 10px;
+    transition: all 0.3s;
+  }
+  
+  .Name {
+    transform: translate(10px,200px);
+    position: absolute;
+    background-color: transparent;
     font-weight: bold;
+    font-size: 18px;
+    transition: 0.3s;
+    color: #ff5858;
   }
   
-  /*Hover*/
-  .card:hover {
-    border-color: rgb(189, 0, 0);
-    -webkit-box-shadow: 19px 18px 17px -9px rgba(34, 60, 80, 0.31);
-    -moz-box-shadow: 19px 18px 17px -9px rgba(34, 60, 80, 0.31);
-    box-shadow: 19px 18px 17px -9px rgba(34, 60, 80, 0.31);
+  .SmallIcon {
+    width: 0px;
+    height: 0px;
+    transform: translate(10px,10px);
+    border-radius: 10px;
+    background-color: #ff5858;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .SmallIcon img{
+    opacity: 0;
+    transform: translate(3px,3px);
+    transition: 0.2s;
   }
   
-  .card:hover .card-button {
-    -webkit-transform: translate(-50%, 50%);
-    -ms-transform: translate(-50%, 50%);
-    transform: translate(-50%, 50%);
+  .Descripion {
+    margin: 60px;
+    padding: 18px;
+    transform: translate(0px,20px);
+    opacity: 0%;
+    color: #ff5858;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .StarIcon {
+    transform: translate(-0px,25px);
+    width: 20px;
+    fill: #ebd300;
+  }
+  
+  .Stars {
+    position: absolute;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    transform: translate(80px,-70px);
+  }
+  
+  .GameImg:hover .Descripion {
+    opacity: 100%;
+  }
+  
+  .GameImg:hover .Gfooter {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .GameImg:hover .SmallIcon {
+    width: 60px;
+    height: 60px;
+  }
+  .GameImg:hover .SmallIcon img {
     opacity: 1;
   }
   
+  .GameImg:hover .Name {
+    transform: translate(75px,-235px);
+  }
+  
+  .GameImg:hover .GameIcon {
+    transform: translate(100px,-160px);
+  }  
