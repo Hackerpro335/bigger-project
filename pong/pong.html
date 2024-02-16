@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-    <style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
 
 *{
     box-sizing: border-box;
@@ -19,7 +20,7 @@ body{
   height: 100%;
   --s: 37px; /* control the size */
 
-  --c: #0000, #0ec26269 0.5deg 119.5deg, #0000 120deg;
+  --c: #0000, #980ec269 0.5deg 119.5deg, #0000 120deg;
   --g1: conic-gradient(from 60deg at 56.25% calc(425% / 6), var(--c));
   --g2: conic-gradient(from 180deg at 43.75% calc(425% / 6), var(--c));
   --g3: conic-gradient(from -60deg at 50% calc(175% / 12), var(--c));
@@ -27,11 +28,14 @@ body{
     var(--g2) var(--s) calc(1.73 * var(--s)), var(--g3) var(--s) 0,
     var(--g3) 0 calc(1.73 * var(--s)) #1e1e1e;
   background-size: calc(2 * var(--s)) calc(3.46 * var(--s));
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 header{
-    width: 100%;
     display: flex;
-    background: #2ff68cb2;
+    width: 100%;
+    background: #9119b6a9;
     border-bottom: solid black 1px;
     position: fixed;
     justify-content: space-between;
@@ -52,7 +56,7 @@ a, img{
     height: 50px;
 }
 
-        .container {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -90,22 +94,72 @@ a, img{
 
 canvas {
   background: #000;
+  border: 1px solid black;
 }
+.icon-menu {
+    margin: 15px;
+    --gap: 5px;
+    --height-bar: 2.5px;
+    --pos-y-bar-one: 0;
+    --pos-y-bar-three: 0;
+    --scale-bar: 1;
+    --rotate-bar-one: 0;
+    --rotate-bar-three: 0;
+    width: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .bar {
+    position: relative;
+    height: var(--height-bar);
+    width: 100%;
+    border-radius: .5rem;
+    background-color: black;
+  }
+  
+  .bar--1 {
+    top: var(--pos-y-bar-one);
+    transform: rotate(var(--rotate-bar-one));
+    transition: top 200ms 100ms, transform 100ms;
+  }
+  
+  .bar--2 {
+    transform: scaleX(var(--scale-bar));
+    transition: transform 150ms 100ms;
+  }
+  
+  .bar--3 {
+    bottom: var(--pos-y-bar-three);
+    transform: rotate(var(--rotate-bar-three));
+    transition: bottom 200ms 100ms, transform 100ms;
+  }
+  
+  .check-icon:checked + .icon-menu > .bar--1 {
+    transition: top 200ms, transform 200ms 100ms;
+  }
+  
+  .check-icon:checked + .icon-menu > .bar--3 {
+    transition: bottom 200ms, transform 200ms 100ms;
+  }
+  
+  .check-icon:checked + .icon-menu {
+    --pos-y-bar-one: calc(var(--gap) + var(--height-bar));
+    --pos-y-bar-three: calc(var(--gap) + var(--height-bar));
+    --scale-bar: 0;
+    --rotate-bar-one: 45deg;
+    --rotate-bar-three: -45deg;
+  }
     </style>
 <head>
   <title>Ping Pong Game</title>
   <!-- Add the Bootstrap CSS file -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 <!-- Add the Bootstrap JavaScript file -->
 
-
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    canvas {
-      border: 1px solid black;
-    }
-  </style>
 </head>
 <body>
     <header>
@@ -121,22 +175,23 @@ canvas {
 
         <div class="container">
         <canvas id="canvas" width="600" height="400"></canvas>
-      </div>
-      <div class="button">
-        <button id="start-btn" class="btn">Start</button>
-          <button id="pause-btn" class="btn">Pause</button>
-          <button id="restart-btn" class="btn">Restart</button>
-        </div>
-       <p class="control">Control: Player Left(W and S) | Player Right(↑ and ↓)</p>
-        <!-- Add a modal element with an ID -->
-      <div class="modal" tabindex="-1" role="dialog" id="message-modal">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-body">
-              <h5 id="message"></h5>
-            </div>
-            <div class="modal-footer">
-              <button type="button" id="message-modal-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+        <div class="button">
+          <button id="start-btn" class="btn">Start</button>
+            <button id="pause-btn" class="btn">Pause</button>
+            <button id="restart-btn" class="btn">Restart</button>
+          </div>
+         <p class="control">Control: Player Left(W and S) | Player Right(↑ and ↓)</p>
+          <!-- Add a modal element with an ID -->
+        <div class="modal" tabindex="-1" role="dialog" id="message-modal">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-body">
+                <h5 id="message"></h5>
+              </div>
+              <div class="modal-footer">
+                <button type="button" id="message-modal-close" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
             </div>
           </div>
         </div>
@@ -235,11 +290,11 @@ function keyUpHandler(e) {
 // Update game state
 function update() {
   // Move paddles
-  if (upPressed && rightPaddleY > 0) {
-    rightPaddleY -= paddleSpeed;
-  } else if (downPressed && rightPaddleY + paddleHeight < canvas.height) {
-    rightPaddleY += paddleSpeed;
-  }
+  //if (upPressed && rightPaddleY > 0) {
+  //  rightPaddleY -= paddleSpeed;
+  //} else if (downPressed && rightPaddleY + paddleHeight < canvas.height) {
+  //  rightPaddleY += paddleSpeed;
+ // }
 
   // Move right paddle based on "w" and "s" keys
   if (wPressed && leftPaddleY > 0) {
@@ -249,11 +304,11 @@ function update() {
   }
 
   // Move right paddle automatically based on ball position
-  // if (ballY > rightPaddleY + paddleHeight / 2) {
-  //   rightPaddleY += paddleSpeed;
-  // } else if (ballY < rightPaddleY + paddleHeight / 2) {
-  //   rightPaddleY -= paddleSpeed;
-  // }
+   if (ballY > rightPaddleY + paddleHeight / 2) {
+     rightPaddleY += paddleSpeed;
+   } else if (ballY < rightPaddleY + paddleHeight / 2) {
+    rightPaddleY -= paddleSpeed;
+   }
 
   // Move ball
   ballX += ballSpeedX;
