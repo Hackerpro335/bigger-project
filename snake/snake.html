@@ -2,6 +2,9 @@
 <html>
 <head>
   <title></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
   <style>
   *{
     box-sizing: border-box;
@@ -32,11 +35,22 @@ header{
     padding-right: 5px;
     border-radius: 0px 0px 15px 15px;
 }
+.logo{
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: xx-large;
+  margin-top: 5px;
+}
 a{
-    margin: 0px 0px 0px 15px;
+    padding: 0px 0px 0px 15px;
+    display: flex;
+    text-decoration: none;
+    color:black;
 }
 a, img{
     height: 50px;
+    margin-right: 5px;
 }
 main{
     display: flex;
@@ -128,7 +142,12 @@ main{
 </head>
 <body>
   <header>
-    <a href="file:///D:/yurevich_tsikhan/project/index.html" class="logo"><img src="img/image_processing20210616-28548-1n41g18.png" alt=""></a>
+    <a href="file:///D:/yurevich_tsikhan/project/index.html" >
+      <img src="img/image_processing20210616-28548-1n41g18.png" alt="">
+      <div class="logo">
+        GameState
+      </div>
+    </a>
     <input hidden="" class="check-icon" id="check-icon" name="check-icon" type="checkbox">
         <label class="icon-menu" for="check-icon">
             <div class="bar bar--1"></div>

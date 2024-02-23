@@ -35,17 +35,28 @@ header{
     padding-right: 5px;
     border-radius: 0px 0px 15px 15px;
 }
-main{
-    padding-top: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.logo1{
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: xx-large;
+  margin-top: 5px;
 }
 a{
-    margin: 0px 0px 0px 15px;
+    padding: 0px 0px 0px 15px;
+    display: flex;
+    text-decoration: none;
+    color:black;
 }
 a, img{
     height: 50px;
+    margin-right: 5px;
+}
+main{
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+    align-items: center;
 }
 .icon-menu {
     margin: 15px;
@@ -135,7 +146,7 @@ a, img{
   }
   
   .Name {
-    transform: translate(10px,200px);
+    transform: translate(10px,135px);
     position: absolute;
     background-color: transparent;
     font-weight: bold;
@@ -203,7 +214,7 @@ a, img{
   }
   
   .GameImg:hover .Name {
-    transform: translate(75px,-235px);
+    transform: translate(90px,-260px);
   }
   
   .GameImg:hover .GameIcon {

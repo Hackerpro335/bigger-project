@@ -2,6 +2,9 @@
 <html>
 <head>
   <title></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anta&display=swap" rel="stylesheet">
   <style>
   *{
     box-sizing: border-box;
@@ -43,6 +46,23 @@ header{
     padding-right: 5px;
     border-radius: 0px 0px 15px 15px;
 }
+.logo{
+  font-family: "Anta", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: xx-large;
+  margin-top: 5px;
+}
+a{
+    padding: 0px 0px 0px 15px;
+    display: flex;
+    text-decoration: none;
+    color:black;
+}
+a, img{
+    height: 50px;
+    margin-right: 5px;
+}
 main{
     display: flex;
     align-items: center;
@@ -53,12 +73,6 @@ main{
 }
 h2{
   color: lightgray;
-}
-a{
-    margin: 0px 0px 0px 15px;
-}
-a, img{
-    height: 50px;
 }
 
 .button{
@@ -151,11 +165,32 @@ canvas {
     --rotate-bar-one: 45deg;
     --rotate-bar-three: -45deg;
   }
+
+  .btn {
+  background-color: #b82f1c;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 215px;
+}
+
   </style>
 </head>
 <body>
   <header>
-    <a href="file:///D:/yurevich_tsikhan/project/index.html" class="logo"><img src="img/image_processing20210616-28548-1n41g18.png"></a>
+    <a href="file:///D:/yurevich_tsikhan/project/index.html" >
+      <img src="img/image_processing20210616-28548-1n41g18.png" alt="">
+      <div class="logo">
+        GameState
+      </div>
+    </a>
         <input hidden="" class="check-icon" id="check-icon" name="check-icon" type="checkbox">
             <label class="icon-menu" for="check-icon">
                 <div class="bar bar--1"></div>
@@ -166,8 +201,17 @@ canvas {
   <main class="cont">
     <h2>Используй стрелочки для управления</h2>
     <canvas width="320" height="640" id="game"></canvas>
+    <div>
+      <button id="restart-btn" class="btn" style="display: none;">Restart</button>
+    </div>
   </main>
 <script>
+  var restartBtn = document.getElementById("restart-btn");
+
+  restartBtn.addEventListener("click", function() {
+  document.location.reload();
+});
+
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -289,6 +333,8 @@ function showGameOver() {
   context.textAlign = 'center';
   context.textBaseline = 'middle';
   context.fillText('GAME OVER!', canvas.width / 2, canvas.height / 2);
+
+  restartBtn.style.display = "block";
 }
 
 const canvas = document.getElementById('game');
