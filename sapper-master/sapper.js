@@ -127,9 +127,6 @@ $(document).ready(function() {
     createTable();
 
 
-//console.log(obj_all_td);
-//console.log(arr_count_td);
-
     var td_all = $(table_main).find('td');
 
     function openCellRecurs(td, number) {

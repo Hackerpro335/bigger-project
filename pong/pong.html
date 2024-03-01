@@ -199,7 +199,7 @@ canvas {
             <button id="restart-btn" class="btn">Restart</button>
           </div>
          <p class="control">Control: Player Left(W and S) | Player Right(↑ and ↓)</p>
-          <!-- Add a modal element with an ID -->
+         
         <div class="modal" tabindex="-1" role="dialog" id="message-modal">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -219,7 +219,7 @@ canvas {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <script>
-      // Initialize canvas
+      
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
@@ -230,8 +230,8 @@ var animationId;
 var gameRunning = false;
 
 startBtn.addEventListener("click", function() {
-  if (!gameRunning) { // only start the game if gameRunning is false
-    gameRunning = true; // set gameRunning to true when the game starts
+  if (!gameRunning) { 
+    gameRunning = true; 
     loop();
   }
 });
@@ -250,30 +250,29 @@ addEventListener("load", (event) => {
 });
 
 
-// Define ball properties
+
 var ballRadius = 10;
 var ballX = canvas.width / 2;
 var ballY = canvas.height / 2;
 var ballSpeedX = 5;
 var ballSpeedY = 5;
 
-// Define paddle properties
+
 var paddleHeight = 80;
 var paddleWidth = 10;
 var leftPaddleY = canvas.height / 2 - paddleHeight / 2;
 var rightPaddleY = canvas.height / 2 - paddleHeight / 2;
 var paddleSpeed = 10;
 
-// Define score properties
+
 var leftPlayerScore = 0;
 var rightPlayerScore = 0;
 var maxScore = 10;
 
-// Listen for keyboard events
+
 document.addEventListener("keydown", keyDownHandler);
 document.addEventListener("keyup", keyUpHandler);
 
-// Handle key press
 var upPressed = false;
 var downPressed = false;
 let wPressed = false;
@@ -291,7 +290,6 @@ function keyDownHandler(e) {
   }
 }
 
-// Handle key release
 function keyUpHandler(e) {
   if (e.key === "ArrowUp") {
     upPressed = false;
@@ -304,7 +302,6 @@ function keyUpHandler(e) {
   }
 }
 
-// Update game state
 function update() {
   // Move paddles
   //if (upPressed && rightPaddleY > 0) {
@@ -313,30 +310,30 @@ function update() {
   //  rightPaddleY += paddleSpeed;
  // }
 
-  // Move right paddle based on "w" and "s" keys
+  // движение палочек на w и s 
   if (wPressed && leftPaddleY > 0) {
     leftPaddleY -= paddleSpeed;
   } else if (sPressed && leftPaddleY + paddleHeight < canvas.height) {
     leftPaddleY += paddleSpeed;
   }
 
-  // Move right paddle automatically based on ball position
+  // бот
    if (ballY > rightPaddleY + paddleHeight / 2) {
      rightPaddleY += paddleSpeed;
    } else if (ballY < rightPaddleY + paddleHeight / 2) {
     rightPaddleY -= paddleSpeed;
    }
 
-  // Move ball
+  // движение мяча 
   ballX += ballSpeedX;
   ballY += ballSpeedY;
 
-  // Check if ball collides with top or bottom of canvas
+  // касание нижней и верхней точек игры 
   if (ballY - ballRadius < 0 || ballY + ballRadius > canvas.height) {
     ballSpeedY = -ballSpeedY;
   }
 
-  // Check if ball collides with left paddle
+  // касание левой палочки 
   if (
     ballX - ballRadius < paddleWidth &&
     ballY > leftPaddleY &&
@@ -345,7 +342,7 @@ function update() {
     ballSpeedX = -ballSpeedX;
   }
 
-  // Check if ball collides with right paddle
+  // косание правой палочки
   if (
     ballX + ballRadius > canvas.width - paddleWidth &&
     ballY > rightPaddleY &&
@@ -354,7 +351,7 @@ function update() {
     ballSpeedX = -ballSpeedX;
   }
 
-  // Check if ball goes out of bounds on left or right side of canvas
+  // за границей поля ли мяч
   if (ballX < 0) {
     rightPlayerScore++;
     reset();
@@ -363,7 +360,7 @@ function update() {
     reset();
   }
 
-  // Check if a player has won
+  // проверка на победу игрока 
   if (leftPlayerScore === maxScore) {
     playerWin("Left player");
   } else if (rightPlayerScore === maxScore) {
@@ -373,12 +370,12 @@ function update() {
 
 function playerWin(player) {
   var message = "Congratulations! " + player + " win!";
-  $('#message').text(message); // Set the message text
-  $('#message-modal').modal('show'); // Display the message modal
+  $('#message').text(message);
+  $('#message-modal').modal('show'); 
   reset();
 }
 
-// Reset ball to center of screen
+// мяч в центр 
 function reset() {
   ballX = canvas.width / 2;
   ballY = canvas.height / 2;
@@ -386,9 +383,9 @@ function reset() {
   ballSpeedY = Math.random() * 10 - 5;
 }
 
-// Draw objects on canvas
+
 function draw() {
-  // Clear canvas
+  
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   ctx.fillStyle = "#FFF";
@@ -397,28 +394,28 @@ function draw() {
   ctx.beginPath();
   ctx.moveTo(canvas.width / 2, 0);
   ctx.lineTo(canvas.width / 2, canvas.height);
-  ctx.strokeStyle = "#FFF"; // Set line color to white
+  ctx.strokeStyle = "#FFF"; 
   ctx.stroke();
   ctx.closePath();
 
-  // Draw ball
+  
   ctx.beginPath();
   ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
   ctx.fill();
   ctx.closePath();
 
-  // Draw left paddle
+  
   ctx.fillRect(0, leftPaddleY, paddleWidth, paddleHeight);
 
-  // Draw right paddle
+  
   ctx.fillRect(canvas.width - paddleWidth, rightPaddleY, paddleWidth, paddleHeight);
 
-  // Draw scores
+  // колво забитых голов
   ctx.fillText("Score: " + leftPlayerScore, 10, 20);
   ctx.fillText("Score: " + rightPlayerScore, canvas.width - 70, 20);
 }
 
-// Game loop
+
 function loop() {
   update();
   draw();
