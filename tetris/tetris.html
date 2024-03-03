@@ -180,9 +180,62 @@ canvas {
   border-radius: 5px;
   width: 215px;
 }
+.menu1{
+    padding: 0;
+    margin: 0;
+    top: 44px;
+    position: fixed;
+    display: flex;
+    width: 300px;
+    height: 100%;
+    background: #c20e4a5b;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    font-family: "Press Start 2P", system-ui;
+    transform: translateX(100%);
+    transition: all 0.4s linear;
+}
+.opened{
+    transform: translateX(0%);
+    transition: all 0.5s hover;
+}
+.menu1 ul{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+.menu1 ul li{
+    width: 100%;
+    list-style: none;
+    width: 120%;
+    transition: all 0.4s ease-in-out;
+}
+.menu1 ul a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    font-size: 24px;
+}
+.menu1 ul li a{
+    display: block;
+    padding: 25px;
+}
+.menu1 li:hover{
+    transition: all  0.4s linear;
+    background: #c20e4a83;
+    transform: translateX(-12%);
+}
 
   </style>
 </head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <body>
   <header>
     <a href="file:///D:/yurevich_tsikhan/project/index.html" >
@@ -199,6 +252,17 @@ canvas {
             </label>
   </header>
   <main class="cont">
+
+    <div class="menu1" id="menu1">
+      <ul>
+        <li><a href="main/main.html">Главная</a></li>
+            <li><a href="">Регистрация</a></li>
+            <li><a href="">Проекты</a></li>
+            <li><a href="">Обо мне</a></li>
+            <li><a href="">Контакты</a></li>
+      </ul>
+    </div>
+
     <h2>Используй стрелочки для управления</h2>
     <canvas width="320" height="640" id="game"></canvas>
     <div>
@@ -206,6 +270,25 @@ canvas {
     </div>
   </main>
 <script>
+
+let menuToggler = document.querySelector(".icon-menu");
+let nav = document.getElementById("menu1")
+
+if (menuToggler){
+    menuToggler.addEventListener("click", (e) => {
+        if (menuToggler.classList.contains("pushed"))
+        {
+            menuToggler.classList.remove("pushed");
+            nav.classList.remove("opened");
+        } 
+        else
+        {
+            menuToggler.classList.add("pushed");
+            nav.classList.add("opened");
+        }
+    });
+}
+
   var restartBtn = document.getElementById("restart-btn");
 
   restartBtn.addEventListener("click", function() {
