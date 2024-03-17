@@ -21,24 +21,13 @@ body{
 .cont {
   width: 100%;
   height: 100%;
-  --s: 37px; /* control the size */
-
-  --c: #0000, #980ec269 0.5deg 119.5deg, #0000 120deg;
-  --g1: conic-gradient(from 60deg at 56.25% calc(425% / 6), var(--c));
-  --g2: conic-gradient(from 180deg at 43.75% calc(425% / 6), var(--c));
-  --g3: conic-gradient(from -60deg at 50% calc(175% / 12), var(--c));
-  background: var(--g1), var(--g1) var(--s) calc(1.73 * var(--s)), var(--g2),
-    var(--g2) var(--s) calc(1.73 * var(--s)), var(--g3) var(--s) 0,
-    var(--g3) 0 calc(1.73 * var(--s)) #1e1e1e;
-  background-size: calc(2 * var(--s)) calc(3.46 * var(--s));
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-image: url("../img/1920x1080-black-4v9bvllqksq877nj.jpg");
+  background-size: 100%;
 }
 header{
     display: flex;
     width: 100%;
-    background: #9119b6a9;
+    background: #3d3b3b86;
     border-bottom: solid black 1px;
     position: fixed;
     justify-content: space-between;
@@ -108,7 +97,7 @@ main{
 }
 
 canvas {
-  background: #000;
+  background: rgba(0, 0, 0, 0.541);
   border: 1px solid black;
 }
 .icon-menu {
@@ -169,20 +158,20 @@ canvas {
     --rotate-bar-three: -45deg;
   }
   .menu1{
-  padding: 0;
-  margin: 0;
-  top: 44px;
-  position: fixed;
-  display: flex;
-  width: 300px;
-  height: 100%;
-  background: #9119b657;
-  justify-content: center;
-  align-items: center;
-  right: 0;
-  font-family: "Press Start 2P", system-ui;
-  transform: translateX(100%);
-  transition: all 0.4s linear;
+    padding: 0;
+    margin: 0;
+    top: 50px;
+    position: fixed;
+    display: flex;
+    width: 300px;
+    height: 100%;
+    background: #3d3b3b65;
+    justify-content: center;
+    align-items: center;
+    right: 0;
+    font-family: "Press Start 2P", system-ui;
+    transform: translateX(100%);
+    transition: all 0.4s linear;
 }
 .opened{
   transform: translateX(0%);
@@ -246,7 +235,7 @@ canvas {
       <div class="menu1" id="menu1">
         <ul>
           <li><a href="main/main.html">Главная</a></li>
-              <li><a href="">Регистрация</a></li>
+          <li><a href="../index.html">Список игр</a></li>
               <li><a href="">Проекты</a></li>
               <li><a href="">Обо мне</a></li>
               <li><a href="">Контакты</a></li>
@@ -261,7 +250,7 @@ canvas {
             <button id="pause-btn" class="btn">Pause</button>
             <button id="restart-btn" class="btn">Restart</button>
           </div>
-         <p class="control">Control: Player Left(W and S) | Player Right(↑ and ↓)</p>
+         <p class="control">Управление: Игрок слева(W и S) | Игрок справа(↑ и ↓)</p>
          
         <div class="modal" tabindex="-1" role="dialog" id="message-modal">
           <div class="modal-dialog" role="document">
